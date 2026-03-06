@@ -23,6 +23,6 @@ Demo Credentials
 email: manager@slooze.com
 password: manager123
 
--Storekeeper:
+- Storekeeper:
 email: store@slooze.com
 password: store123
