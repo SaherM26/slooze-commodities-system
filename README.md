@@ -13,3 +13,16 @@ Tech Stack:
 - React
 - TypeScript
 - Tailwind CSS
+
+How to Run:
+-npm install
+-npm run dev
+
+Demo Credentials
+- Manager:
+manager@slooze.com
+manager123
+
+-Storekeeper:
+store@slooze.com
+store123
