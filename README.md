@@ -15,14 +15,14 @@ Tech Stack:
 - Tailwind CSS
 
 How to Run:
--npm install
--npm run dev
+- npm install
+- npm run dev
 
 Demo Credentials
 - Manager:
-manager@slooze.com
-manager123
+email: manager@slooze.com
+password: manager123
 
 -Storekeeper:
-store@slooze.com
-store123
+email: store@slooze.com
+password: store123
