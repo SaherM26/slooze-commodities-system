@@ -1,38 +1,54 @@
 "use client";
 
 import Link from "next/link";
-import { Product } from "@/types/products";
+import { Product } from "@/types/product";
 
-export default function ProductCard({ product }: { product: Product }) {
+interface Props {
+    product: Product;
+}
+
+export default function ProductCard({ product }: Props) {
 
     const handleDelete = () => {
 
-        const stored = localStorage.getItem("products");
+        const confirmDelete = confirm("Are you sure you want to delete this product?");
 
-        if (!stored) return;
+        if (!confirmDelete) {
+            return;
+        }
 
-        const products = JSON.parse(stored);
+        const storedProducts = localStorage.getItem("products");
 
-        const updated = products.filter((p: Product) => p.id !== product.id);
+        if (!storedProducts) return;
 
-        localStorage.setItem("products", JSON.stringify(updated));
+        const products = JSON.parse(storedProducts);
+
+        const updatedProducts = products.filter(
+            (p: Product) => p.id !== product.id
+        );
+
+        localStorage.setItem("products", JSON.stringify(updatedProducts));
 
         window.location.reload();
-
     };
 
     return (
 
-        <div className="border p-4 rounded shadow">
+        <div className="border rounded p-4 shadow hover:shadow-lg transition">
 
-            <h2 className="text-lg font-semibold">
+            <h2 className="text-lg font-semibold mb-2">
                 {product.name}
             </h2>
 
-            <p>Price: ₹{product.price}</p>
-            <p>Stock: {product.stock}</p>
+            <p className="text-gray-600">
+                Price: ₹{product.price}
+            </p>
 
-            <div className="flex gap-3 mt-4">
+            <p className="text-gray-600 mb-4">
+                Stock: {product.stock}
+            </p>
+
+            <div className="flex gap-3">
 
                 <Link
                     href={`/edit-product/${product.id}`}

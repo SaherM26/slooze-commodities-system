@@ -14,23 +14,20 @@ export default function Login() {
     const handleLogin = () => {
 
         if (email === "manager@slooze.com" && password === "manager123") {
-
             localStorage.setItem("role", "manager");
-            router.push("/dashboard");
+            router.replace("/dashboard");
+            router.refresh();
             return;
-
         }
 
         if (email === "store@slooze.com" && password === "store123") {
-
             localStorage.setItem("role", "storekeeper");
-            router.push("/products");
+            router.replace("/products");
+            router.refresh();
             return;
-
         }
 
         setError("Invalid email or password");
-
     };
 
     return (

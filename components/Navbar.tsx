@@ -1,63 +1,56 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import ThemeToggle from "./ThemeToggle";
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
+import ThemeToggle from "./ThemeToggle"
 
 export default function Navbar() {
 
-    const [role, setRole] = useState("");
-    const router = useRouter();
+    const router = useRouter()
+    const [role, setRole] = useState<string | null>(null)
 
     useEffect(() => {
 
-        const userRole = localStorage.getItem("role");
+        const storedRole = localStorage.getItem("role")
 
-        if (userRole) {
-            setRole(userRole);
-        }
+        setRole(storedRole)
 
-    }, []);
+    }, [])
 
     const handleLogout = () => {
 
-        localStorage.removeItem("role");
+        localStorage.removeItem("role")
+        router.push("/login")
 
-        router.push("/login");
-
-    };
+    }
 
     return (
 
-        <div className="flex justify-between items-center p-4 border-b">
+        <div className="flex justify-between items-center bg-gray-800 text-white px-6 py-4">
 
-            <h1 className="text-xl font-bold">
-                Slooze Commodities
+            <h1 className="text-lg font-semibold">
+                Slooze Dashboard
             </h1>
 
-            <ThemeToggle />
+            <div className="flex items-center gap-5">
 
-
-            <div className="flex gap-4">
-
-                <Link href="/products">
-                    Products
-                </Link>
+                <Link href="/products">Products</Link>
 
                 {role === "manager" && (
-                    <Link href="/dashboard">
-                        Dashboard
-                    </Link>
+                    <Link href="/dashboard">Dashboard</Link>
                 )}
 
                 {role === "manager" && (
-                    <Link href="/add-product">
-                        Add Product
-                    </Link>
+                    <Link href="/add-product">Add Product</Link>
                 )}
 
-                <button onClick={handleLogout}>
+                <ThemeToggle />
+
+                <button
+                    onClick={handleLogout}
+                    className="bg-red-500 px-3 py-1 rounded"
+                >
                     Logout
                 </button>
 
@@ -65,6 +58,6 @@ export default function Navbar() {
 
         </div>
 
-    );
+    )
 
 }
